@@ -9,11 +9,11 @@ using namespace std;
 
 
 void printUsernameAndPassword(const string& username, const string& password){
-	string command = "echo \'";
+	string command = "echo -n \'";
 	cout << "Username: " << username << endl;
-	cout << "Password: * * * *" << endl;
+	cout << "Password: * * *" << endl;
 	command += password;
-	command += "\' >> xclip";
+	command += "\' | xclip";
 	system(reinterpret_cast<const char*>(command.c_str()));
 }
 
