@@ -3,8 +3,8 @@ OBJ = base64.o crypt.o
 first: passgen.bin passread.bin
 	
 user-install: first
-	cp passgen.bin $HOME/bin/passgen
-	cp passread.bin $HOME/bin/passread
+	cp passgen.bin ${HOME}/bin/passgen
+	cp passread.bin ${HOME}/bin/passread
 
 install: first
 	cp passgen.bin /usr/bin/passgen
