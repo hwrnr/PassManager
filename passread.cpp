@@ -9,8 +9,12 @@ using namespace std;
 
 
 void printUsernameAndPassword(const string& username, const string& password){
+	string command = "echo \'";
 	cout << "Username: " << username << endl;
-	cout << "Password: " << password << endl;
+	cout << "Password: * * * *" << endl;
+	command += password;
+	command += "\' >> xclip";
+	system(reinterpret_cast<const char*>(command.c_str()));
 }
 
 
