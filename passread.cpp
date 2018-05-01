@@ -13,7 +13,7 @@ void printUsernameAndPassword(const string& username, const string& password){
 	cout << "Username: " << username << endl;
 	cout << "Password: * * *" << endl;
 	command += password;
-	command += "\' | xclip";
+	command += "\' | xclip -l 1";
 	system(reinterpret_cast<const char*>(command.c_str()));
 }
 
