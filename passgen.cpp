@@ -15,13 +15,17 @@ using namespace std;
 void getUsernameAndPassword(string &username, string &password, const string &key){
 	cout << "Enter your username: ";
 	cin >> username;
-	cout << "Generating password" << endl;
-	char temp;
-	srand (time(NULL));
-	for (int i = 0; i < 30; ++i){
-		password += (char)(rand() % 94 + 33);
-		while (password [i] == '\''){
-			password[i] = (char)(rand() % 94 + 33);
+	cout << "Enter password or g to autogenerate: ";
+	cin >> password;
+	if (password == "g"){
+		cout << "Generating password" << endl;
+		char temp;
+		srand (time(NULL));
+		for (int i = 0; i < 30; ++i){
+			password += (char)(rand() % 94 + 33);
+			while (password [i] == '\''){
+				password[i] = (char)(rand() % 94 + 33);
+			}
 		}
 	}
 	crypt(password, key);
