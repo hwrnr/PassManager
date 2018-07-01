@@ -21,6 +21,7 @@ void getUsernameAndPassword(string &username, string &password, const string &ke
 		cout << "Generating password" << endl;
 		char temp;
 		srand (time(NULL));
+		password = "";
 		for (int i = 0; i < 30; ++i){
 			password += (char)(rand() % 94 + 33);
 			while (password [i] == '\''){
