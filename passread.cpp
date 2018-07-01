@@ -25,7 +25,7 @@ int main(int argc, char const *argv[]){
 		return 0;
 	}
 
-	string homePath, filePath, username, password, key;
+	string homePath, filePath, username, password, key, usernameSalt, passwordSalt;
 	homePath = getenv("HOME");
 	filePath = homePath;
 	filePath += PATH;
@@ -37,10 +37,14 @@ int main(int argc, char const *argv[]){
 	ifstream file;
 	file.open(filePath);
 
+	file >> usernameSalt;
 	file >> username;
+	file >> passwordSalt;
 	file >> password;
+	username = base64_decode(username);
 	password = base64_decode(password);
-	crypt(password, key);
+	crypt(username, key, usernameSalt);
+	crypt(password, key, passwordSalt);
 
 
 	printUsernameAndPassword(username, password);

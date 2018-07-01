@@ -1,4 +1,4 @@
-OBJ = base64.o crypt.o
+OBJ = base64.o crypt.o sha512.o
 
 first: passgen.bin passread.bin
 	
@@ -18,7 +18,7 @@ passgen.bin: passgen.o $(OBJ)
 passread.bin: passread.o $(OBJ)
 	g++ -o $@ $< $(OBJ)
 
-%.o: %.cpp base64.h crypt.h
+%.o: %.cpp base64.h crypt.h %.h
 	g++ -c -o $@ $<
 
 clean:

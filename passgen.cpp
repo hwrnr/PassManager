@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void getUsernameAndPassword(string &username, string &password, const string &key){
+void getUsernameAndPassword(string &username, string &password, const string &key, string &usernameSalt, string &passwordSalt){
 	cout << "Enter your username: ";
 	cin >> username;
 	cout << "Enter password or g to autogenerate: ";
@@ -28,13 +28,20 @@ void getUsernameAndPassword(string &username, string &password, const string &ke
 			}
 		}
 	}
-	crypt(password, key);
+	//generate salts
+	for (int i = 0; i < 10; ++i){
+		usernameSalt += (char)(rand() % 94 + 33);
+                passwordSalt += (char)(rand() % 94 + 33);
+        }
+	crypt(username, key, usernameSalt);
+	crypt(password, key, passwordSalt);
+	username = base64_encode(reinterpret_cast<const unsigned char*>(username.c_str()), username.length());
 	password = base64_encode(reinterpret_cast<const unsigned char*>(password.c_str()), password.length());
 }
 
 int main(int argc, char const *argv[]){
 
-	string homePath, filePath, username, password, key;
+	string homePath, filePath, username, password, key, passwordSalt, usernameSalt;
         homePath = getenv("HOME");
         filePath = homePath;
         filePath += PATH;
@@ -54,9 +61,9 @@ int main(int argc, char const *argv[]){
 	ofstream file;
         file.open(filePath);
 
-	getUsernameAndPassword(username, password, key);
+	getUsernameAndPassword(username, password, key, usernameSalt, passwordSalt);
 
-	file << username << "\n" << password;
+	file << usernameSalt << "\n" << username << "\n" << passwordSalt << "\n" << password;
 
 	file.close();
 

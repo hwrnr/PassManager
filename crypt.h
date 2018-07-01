@@ -4,7 +4,7 @@
 #include <string>
 #include "sha512.h"
 
-void crypt(std::string &, const std::string &key);
+void crypt(std::string &, std::string key, std::string salt);
 
 
 #endif

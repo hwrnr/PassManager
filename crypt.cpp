@@ -1,6 +1,7 @@
 #include "crypt.h"
 
-void crypt(std::string &str, const std::string &key){
+void crypt(std::string &str, std::string key, std::string salt){
+	key = key + salt;
 	for (int i = 0; i < 512; ++i){
 		key = sha512(key);
 	}
