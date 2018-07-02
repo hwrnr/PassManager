@@ -62,6 +62,14 @@ int main(int argc, char const *argv[]){
 
 	ofstream file;
         file.open(filePath);
+	if (!file){
+		system("mkdir ~/PassFold");
+		file.open(filePath);
+		if (!file){
+			cout << "Error occurred while opening file" << endl;
+			return 0;
+		}
+	}
 
 	getUsernameAndPassword(username, password, key, usernameSalt, passwordSalt);
 
