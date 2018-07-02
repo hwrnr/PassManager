@@ -2,6 +2,7 @@
 #include <fstream>
 #include "base64.h"
 #include "crypt.h"
+#include <unistd.h>
 
 #include <cstdlib>
 #include <ctime>
@@ -20,7 +21,7 @@ void getUsernameAndPassword(string &username, string &password, const string &ke
 	if (password == "g"){
 		cout << "Generating password" << endl;
 		char temp;
-		srand (time(NULL));
+		srand (time(NULL) + getpid());
 		password = "";
 		for (int i = 0; i < 30; ++i){
 			password += (char)(rand() % 94 + 33);
