@@ -32,7 +32,10 @@ int main(int argc, char const *argv[]){
 	filePath += argv[1];
 
 	cout << "Enter encryption key: ";
+  system("stty -echo");
 	cin >> key;
+  system("stty echo");
+  cout << endl;
 
 	ifstream file;
 	file.open(filePath);

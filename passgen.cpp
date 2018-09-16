@@ -17,7 +17,9 @@ void getUsernameAndPassword(string &username, string &password, const string &ke
 	cout << "Enter your username: ";
 	cin >> username;
 	cout << "Enter password or g to autogenerate: ";
+  system("stty -echo");
 	cin >> password;
+  system("stty echo");
 	if (password == "g"){
 		cout << "Generating password" << endl;
 		char temp;
@@ -32,7 +34,7 @@ void getUsernameAndPassword(string &username, string &password, const string &ke
 	}
 	//generate salts
 	for (int i = 0; i < 10; ++i){
-		usernameSalt += (char)(rand() % 94 + 33);
+                usernameSalt += (char)(rand() % 94 + 33);
                 passwordSalt += (char)(rand() % 94 + 33);
         }
 	crypt(username, key, usernameSalt);
@@ -56,12 +58,15 @@ int main(int argc, char const *argv[]){
 		filePath += temp;
 	}
 
-	cout << "Enter encryption key: ";
-        cin >> key;
+  cout << "Enter encryption key: ";
+  system("stty -echo");
+  cin >> key;
+  system("stty echo");
+  cout << endl;
 	
 
 	ofstream file;
-        file.open(filePath);
+  file.open(filePath);
 	if (!file){
 		system("mkdir ~/PassFold");
 		file.open(filePath);
