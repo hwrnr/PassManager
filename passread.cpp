@@ -1,3 +1,5 @@
+#define UNICODE
+
 #include <iostream>
 #include <fstream>
 #include "base64.h"
