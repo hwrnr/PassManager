@@ -20,3 +20,7 @@ These two installation can both be done on one system, but it will run the versi
 
 Dependencies:
 	-xclip
+
+All passwords are kept in $HOME/PassFold
+
+Android implementation https://github.com/hwrnr/AndroidPassManager. Password currently aren't synchronised, but you can sync them manually or by some other program by synchronising $HOME/PassFold on your PC and InternalSDCard/Passwords on Android device.
