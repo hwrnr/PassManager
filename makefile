@@ -3,7 +3,7 @@ OBJ = base64.o crypt.o sha512.o
 first: passgen.bin passread.bin
 	
 user-install: first
-	mkdir ~/bin || true
+	mkdir ~/bin 2>/dev/null || true
 	cp passgen.bin ${HOME}/bin/passgen
 	cp passread.bin ${HOME}/bin/passread
 	if grep --quiet "#PassManager" ${HOME}/.bashrc; then true; else cat profile >> ${HOME}/.bashrc; fi

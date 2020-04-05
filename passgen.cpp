@@ -41,7 +41,7 @@ void getUsernameAndPassword(string &username, string &password, const string &ke
         }
 	crypt(username, key, usernameSalt);
 	crypt(password, key, passwordSalt);
-	username = base64_encode(reinterpret_cast<const unsigned char*>(username.c_str()), username.length());
+	username = base64_encode(reinterpret_cast<const unsigned char*>(username.data()), username.length());
 	password = base64_encode(reinterpret_cast<const unsigned char*>(password.c_str()), password.length());
 }
 
